@@ -1,0 +1,22 @@
+<?php
+function phpLike($agulha, $palheiro){
+	
+	$agulha = explode("||", $agulha);
+
+	if(!is_array($agulha)){
+		$agulha[] = $agulha;
+	}
+
+	foreach($agulha as $a){
+		
+		$a = str_replace('%', '.*', preg_quote($a, '/'));
+		$retorno = (bool) preg_match("/^{$a}$/", $palheiro);
+		
+		if($retorno == true){
+			return $retorno;			
+		}
+	}
+	
+    return false;
+}
+?>
